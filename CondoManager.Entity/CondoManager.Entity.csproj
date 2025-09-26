@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- NuGet Package Configuration -->
+    <PackageId>CondoManager.Entity</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>CondoManager Team</Authors>
+    <Company>CondoManager</Company>
+    <Product>CondoManager Core</Product>
+    <Description>Core domain entities, DTOs, enums, and events for the CondoManager system. This package contains all shared data models and domain logic.</Description>
+    <PackageTags>condomanager;entities;domain;models;dto</PackageTags>
+    <PackageProjectUrl>https://github.com/yourorg/CondoManager</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yourorg/CondoManager</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+</Project>

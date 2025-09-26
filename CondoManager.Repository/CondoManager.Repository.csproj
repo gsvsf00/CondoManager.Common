@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- NuGet Package Configuration -->
+    <PackageId>CondoManager.Repository</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>CondoManager Team</Authors>
+    <Company>CondoManager</Company>
+    <Product>CondoManager Core</Product>
+    <Description>Repository pattern implementation and data access layer for the CondoManager system. Includes Entity Framework repositories and Unit of Work pattern.</Description>
+    <PackageTags>condomanager;repository;data-access;entity-framework;unit-of-work</PackageTags>
+    <PackageProjectUrl>https://github.com/yourorg/CondoManager</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yourorg/CondoManager</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CondoManager.Entity\CondoManager.Entity.csproj" />
+  </ItemGroup>
+
+</Project>
