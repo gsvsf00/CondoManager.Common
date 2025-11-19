@@ -11,7 +11,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<Conversation?> GetWithParticipantsAsync(Guid conversationId)
+        public async Task<Conversation?> GetWithParticipantsAsync(int conversationId)
         {
             return await _context.Set<Conversation>()
                 .Include(c => c.Participants)
@@ -19,7 +19,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(c => c.Id == conversationId);
         }
 
-        public async Task<Conversation?> GetWithMessagesAsync(Guid conversationId, int messageCount = 50)
+        public async Task<Conversation?> GetWithMessagesAsync(int conversationId, int messageCount = 50)
         {
             return await _context.Set<Conversation>()
                 .Include(c => c.Messages.OrderByDescending(m => m.SentAt).Take(messageCount))
@@ -29,7 +29,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(c => c.Id == conversationId);
         }
 
-        public async Task<IEnumerable<Conversation>> GetUserConversationsAsync(Guid userId)
+        public async Task<IEnumerable<Conversation>> GetUserConversationsAsync(int userId)
         {
             return await _context.Set<Conversation>()
                 .Where(c => c.Participants.Any(p => p.UserId == userId))
@@ -39,7 +39,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Conversation?> GetDirectConversationAsync(Guid userId1, Guid userId2)
+        public async Task<Conversation?> GetDirectConversationAsync(int userId1, int userId2)
         {
             return await _context.Set<Conversation>()
                 .Where(c => c.Type == ConversationType.Direct)
@@ -51,7 +51,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Conversation?> GetApartmentGroupConversationAsync(Guid apartmentId)
+        public async Task<Conversation?> GetApartmentGroupConversationAsync(int apartmentId)
         {
             return await _context.Set<Conversation>()
                 .Where(c => c.Type == ConversationType.ApartmentGroup && c.ApartmentId == apartmentId)
@@ -60,7 +60,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task UpdateLastMessageTimeAsync(Guid conversationId, DateTime lastMessageTime)
+        public async Task UpdateLastMessageTimeAsync(int conversationId, DateTime lastMessageTime)
         {
             var conversation = await _context.Set<Conversation>()
                 .FirstOrDefaultAsync(c => c.Id == conversationId);
@@ -72,7 +72,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task<bool> IsUserInConversationAsync(Guid userId, Guid conversationId)
+        public async Task<bool> IsUserInConversationAsync(int userId, int conversationId)
         {
             return await _context.Set<Conversation>()
                 .AnyAsync(c => c.Id == conversationId && 

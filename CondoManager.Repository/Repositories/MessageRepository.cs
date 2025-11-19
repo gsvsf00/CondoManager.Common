@@ -10,7 +10,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<IEnumerable<Message>> GetByApartmentIdAsync(Guid? apartmentId)
+        public async Task<IEnumerable<Message>> GetByApartmentIdAsync(int? apartmentId)
         {
             return await _dbSet
                 .Where(m => m.ApartmentId == apartmentId)
@@ -19,7 +19,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetBySenderIdAsync(Guid senderId)
+        public async Task<IEnumerable<Message>> GetBySenderIdAsync(int senderId)
         {
             return await _dbSet
                 .Where(m => m.SenderId == senderId)
@@ -28,7 +28,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetRecentMessagesAsync(Guid apartmentId, int count = 50)
+        public async Task<IEnumerable<Message>> GetRecentMessagesAsync(int apartmentId, int count = 50)
         {
             return await _dbSet
                 .Where(m => m.ApartmentId == apartmentId)
@@ -38,7 +38,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetByConversationIdAsync(Guid conversationId, int skip = 0, int take = 50)
+        public async Task<IEnumerable<Message>> GetByConversationIdAsync(int conversationId, int skip = 0, int take = 50)
         {
             return await _dbSet
                 .Where(m => m.ConversationId == conversationId)
@@ -50,7 +50,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetDirectMessagesAsync(Guid userId1, Guid userId2, int skip = 0, int take = 50)
+        public async Task<IEnumerable<Message>> GetDirectMessagesAsync(int userId1, int userId2, int skip = 0, int take = 50)
         {
             return await _dbSet
                 .Where(m => (m.SenderId == userId1 && m.RecipientId == userId2) ||
@@ -62,7 +62,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Message?> GetMessageWithRepliesAsync(Guid messageId)
+        public async Task<Message?> GetMessageWithRepliesAsync(int messageId)
         {
             return await _dbSet
                 .Include(m => m.Sender)
@@ -71,7 +71,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(m => m.Id == messageId);
         }
 
-        public async Task<int> GetUnreadCountAsync(Guid userId, Guid conversationId)
+        public async Task<int> GetUnreadCountAsync(int userId, int conversationId)
         {
             return await _dbSet
                 .CountAsync(m => m.ConversationId == conversationId && 
@@ -79,7 +79,7 @@ namespace CondoManager.Repository.Repositories
                                 !m.IsRead);
         }
 
-        public async Task MarkAsDeliveredAsync(Guid messageId)
+        public async Task MarkAsDeliveredAsync(int messageId)
         {
             var message = await _dbSet.FirstOrDefaultAsync(m => m.Id == messageId);
             if (message != null)
@@ -90,7 +90,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task MarkAsReadAsync(Guid messageId, Guid userId)
+        public async Task MarkAsReadAsync(int messageId, int userId)
         {
             var message = await _dbSet.FirstOrDefaultAsync(m => m.Id == messageId);
             
@@ -102,7 +102,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task MarkConversationAsReadAsync(Guid userId, Guid conversationId)
+        public async Task MarkConversationAsReadAsync(int userId, int conversationId)
         {
             var messages = await _dbSet
                 .Where(m => m.ConversationId == conversationId && 
@@ -122,7 +122,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task<IEnumerable<Message>> GetUndeliveredMessagesAsync(Guid userId)
+        public async Task<IEnumerable<Message>> GetUndeliveredMessagesAsync(int userId)
         {
             return await _dbSet
                 .Where(m => m.RecipientId == userId && m.DeliveredAt == null)
@@ -131,7 +131,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Message>> GetUnreadMessagesAsync(Guid userId, int count = 10)
+        public async Task<IEnumerable<Message>> GetUnreadMessagesAsync(int userId, int count = 10)
         {
             return await _dbSet
                 .Where(m => m.RecipientId == userId && !m.IsRead)
@@ -141,7 +141,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Message?> GetLastMessageByConversationIdAsync(Guid conversationId)
+        public async Task<Message?> GetLastMessageByConversationIdAsync(int conversationId)
         {
             return await _dbSet
                 .Where(m => m.ConversationId == conversationId)

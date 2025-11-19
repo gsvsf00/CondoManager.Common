@@ -11,7 +11,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<Call?> GetWithParticipantsAsync(Guid id)
+        public async Task<Call?> GetWithParticipantsAsync(int id)
         {
             return await _dbSet
                 .Include(c => c.Participants)
@@ -21,7 +21,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<IEnumerable<Call>> GetCallsByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<Call>> GetCallsByUserIdAsync(int userId)
         {
             return await _dbSet
                 .Where(c => c.CallerId == userId || c.RecipientId == userId)
@@ -31,7 +31,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task UpdateCallStatusAsync(Guid callId, CallStatus status)
+        public async Task UpdateCallStatusAsync(int callId, CallStatus status)
         {
             var call = await _dbSet.FindAsync(callId);
             if (call != null)
@@ -63,7 +63,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Call?> GetActiveCallByUserIdAsync(Guid userId)
+        public async Task<Call?> GetActiveCallByUserIdAsync(int userId)
         {
             return await _dbSet
                 .Where(c => (c.CallerId == userId || c.Participants.Any(p => p.UserId == userId)) &&
@@ -74,7 +74,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Call>> GetCallHistoryAsync(Guid userId, int skip = 0, int take = 50)
+        public async Task<IEnumerable<Call>> GetCallHistoryAsync(int userId, int skip = 0, int take = 50)
         {
             return await _dbSet
                 .Where(c => c.CallerId == userId || c.Participants.Any(p => p.UserId == userId))
@@ -87,7 +87,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task UpdateCallDurationAsync(Guid callId, TimeSpan duration)
+        public async Task UpdateCallDurationAsync(int callId, TimeSpan duration)
         {
             var call = await _dbSet.FindAsync(callId);
             if (call != null)
@@ -97,7 +97,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task<bool> IsUserInActiveCallAsync(Guid userId)
+        public async Task<bool> IsUserInActiveCallAsync(int userId)
         {
             return await _dbSet
                 .AnyAsync(c => (c.CallerId == userId || c.Participants.Any(p => p.UserId == userId)) &&

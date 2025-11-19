@@ -10,7 +10,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<Apartment?> GetWithResidentsAsync(Guid id)
+        public async Task<Apartment?> GetWithResidentsAsync(int id)
         {
             return await _dbSet
                 .Include(a => a.Residents)
@@ -23,7 +23,7 @@ namespace CondoManager.Repository.Repositories
             return await _dbSet.FirstOrDefaultAsync(a => a.Number == number);
         }
 
-        public async Task<IEnumerable<Apartment>> GetByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<Apartment>> GetByUserIdAsync(int userId)
         {
             return await _dbSet
                 .Where(a => a.Residents.Any(au => au.UserId == userId))
@@ -35,7 +35,7 @@ namespace CondoManager.Repository.Repositories
             return await _dbSet.AnyAsync(a => a.Number == number);
         }
 
-        public async Task AssignUserToApartmentAsync(Guid apartmentId, Guid userId)
+        public async Task AssignUserToApartmentAsync(int apartmentId, int userId)
         {
             var apartmentUser = new ApartmentUser
             {
@@ -47,7 +47,7 @@ namespace CondoManager.Repository.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveUserFromApartmentAsync(Guid apartmentId, Guid userId)
+        public async Task RemoveUserFromApartmentAsync(int apartmentId, int userId)
         {
             var apartmentUser = await _context.Set<ApartmentUser>()
                 .FirstOrDefaultAsync(au => au.ApartmentId == apartmentId && au.UserId == userId);

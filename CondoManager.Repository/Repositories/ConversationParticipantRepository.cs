@@ -10,7 +10,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<IEnumerable<ConversationParticipant>> GetByConversationIdAsync(Guid conversationId)
+        public async Task<IEnumerable<ConversationParticipant>> GetByConversationIdAsync(int conversationId)
         {
             return await _context.Set<ConversationParticipant>()
                 .Where(cp => cp.ConversationId == conversationId)
@@ -18,7 +18,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<ConversationParticipant>> GetByUserIdAsync(Guid userId)
+        public async Task<IEnumerable<ConversationParticipant>> GetByUserIdAsync(int userId)
         {
             return await _context.Set<ConversationParticipant>()
                 .Where(cp => cp.UserId == userId)
@@ -26,7 +26,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ConversationParticipant?> GetParticipantAsync(Guid conversationId, Guid userId)
+        public async Task<ConversationParticipant?> GetParticipantAsync(int conversationId, int userId)
         {
             return await _context.Set<ConversationParticipant>()
                 .Include(cp => cp.User)
@@ -34,13 +34,13 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(cp => cp.ConversationId == conversationId && cp.UserId == userId);
         }
 
-        public async Task<bool> IsUserParticipantAsync(Guid conversationId, Guid userId)
+        public async Task<bool> IsUserParticipantAsync(int conversationId, int userId)
         {
             return await _context.Set<ConversationParticipant>()
                 .AnyAsync(cp => cp.ConversationId == conversationId && cp.UserId == userId && cp.IsActive);
         }
 
-        public async Task UpdateLastReadAsync(Guid userId, Guid conversationId, DateTime lastReadAt)
+        public async Task UpdateLastReadAsync(int userId, int conversationId, DateTime lastReadAt)
         {
             var participant = await _context.Set<ConversationParticipant>()
                 .FirstOrDefaultAsync(cp => cp.ConversationId == conversationId && cp.UserId == userId);
@@ -52,7 +52,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task RemoveParticipantAsync(Guid conversationId, Guid userId)
+        public async Task RemoveParticipantAsync(int conversationId, int userId)
         {
             var participant = await _context.Set<ConversationParticipant>()
                 .FirstOrDefaultAsync(cp => cp.ConversationId == conversationId && cp.UserId == userId);
@@ -63,7 +63,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task<IEnumerable<Guid>> GetActiveParticipantIdsAsync(Guid conversationId)
+        public async Task<IEnumerable<int>> GetActiveParticipantIdsAsync(int conversationId)
         {
             return await _context.Set<ConversationParticipant>()
                 .Where(cp => cp.ConversationId == conversationId)

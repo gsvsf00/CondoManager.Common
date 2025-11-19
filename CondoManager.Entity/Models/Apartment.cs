@@ -2,7 +2,7 @@ namespace CondoManager.Entity.Models
 {
     public class Apartment
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Number { get; set; } = string.Empty;
 

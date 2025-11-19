@@ -6,6 +6,6 @@ namespace CondoManager.Repository.Interfaces
     {
         Task<IEnumerable<Event>> GetUpcomingEventsAsync();
         Task<IEnumerable<Event>> GetEventsByDateRangeAsync(DateTime startDate, DateTime endDate);
-        Task<IEnumerable<Event>> GetEventsByCreatorAsync(Guid creatorId);
+        Task<IEnumerable<Event>> GetEventsByCreatorAsync(int creatorId);
     }
 }

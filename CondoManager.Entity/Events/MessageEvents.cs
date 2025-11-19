@@ -4,9 +4,9 @@ namespace CondoManager.Entity.Events
 {
     public class MessageReceivedEvent
     {
-        public Guid SenderId { get; set; }
-        public Guid? RecipientId { get; set; }
-        public Guid? ConversationId { get; set; }
+        public int SenderId { get; set; }
+        public int? RecipientId { get; set; }
+        public int? ConversationId { get; set; }
         public string Content { get; set; } = string.Empty;
         public MessageType MessageType { get; set; }
         public ChatType ChatType { get; set; }
@@ -16,10 +16,10 @@ namespace CondoManager.Entity.Events
 
     public class MessageSavedEvent
     {
-        public Guid MessageId { get; set; }
-        public Guid SenderId { get; set; }
-        public Guid? RecipientId { get; set; }
-        public Guid ConversationId { get; set; }
+        public int MessageId { get; set; }
+        public int SenderId { get; set; }
+        public int? RecipientId { get; set; }
+        public int ConversationId { get; set; }
         public string Content { get; set; } = string.Empty;
         public MessageType MessageType { get; set; }
         public ChatType ChatType { get; set; }
@@ -29,15 +29,15 @@ namespace CondoManager.Entity.Events
 
     public class MessageDeliveredEvent
     {
-        public Guid MessageId { get; set; }
-        public Guid UserId { get; set; }
+        public int MessageId { get; set; }
+        public int UserId { get; set; }
         public DateTime DeliveredAt { get; set; }
     }
 
     public class MessageReadEvent
     {
-        public Guid MessageId { get; set; }
-        public Guid UserId { get; set; }
+        public int MessageId { get; set; }
+        public int UserId { get; set; }
         public DateTime ReadAt { get; set; }
     }
 }

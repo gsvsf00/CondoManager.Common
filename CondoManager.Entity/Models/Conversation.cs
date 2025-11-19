@@ -4,16 +4,16 @@ namespace CondoManager.Entity.Models
 {
     public class Conversation
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         
         public ConversationType Type { get; set; }
         
         public string? Name { get; set; } // For group chats or custom names
         
-        public Guid? ApartmentId { get; set; } // For apartment-related conversations
+        public int? ApartmentId { get; set; } // For apartment-related conversations
         public Apartment? Apartment { get; set; }
         
-        public Guid? CreatedByUserId { get; set; } // Who created this conversation
+        public int? CreatedByUserId { get; set; } // Who created this conversation
         public User? CreatedByUser { get; set; }
         
         public DateTime CreatedAt { get; set; }

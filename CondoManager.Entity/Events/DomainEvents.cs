@@ -11,7 +11,7 @@ namespace CondoManager.Entity.Events
 
     public class UserRegisteredEvent : DomainEvent
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
@@ -24,7 +24,7 @@ namespace CondoManager.Entity.Events
 
     public class UserUpdatedEvent : DomainEvent
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
@@ -37,7 +37,7 @@ namespace CondoManager.Entity.Events
 
     public class UserDeletedEvent : DomainEvent
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
 
@@ -49,9 +49,9 @@ namespace CondoManager.Entity.Events
 
     public class CallStartedEvent : DomainEvent
     {
-        public Guid CallId { get; set; }
-        public Guid CallerId { get; set; }
-        public Guid RecipientId { get; set; }
+        public int CallId { get; set; }
+        public int CallerId { get; set; }
+        public int RecipientId { get; set; }
         public CallType CallType { get; set; }
         public DateTime StartedAt { get; set; }
 
@@ -63,9 +63,9 @@ namespace CondoManager.Entity.Events
 
     public class CallAcceptedEvent : DomainEvent
     {
-        public Guid CallId { get; set; }
-        public Guid CallerId { get; set; }
-        public Guid RecipientId { get; set; }
+        public int CallId { get; set; }
+        public int CallerId { get; set; }
+        public int RecipientId { get; set; }
         public DateTime AcceptedAt { get; set; }
 
         public CallAcceptedEvent()
@@ -76,9 +76,9 @@ namespace CondoManager.Entity.Events
 
     public class CallDeclinedEvent : DomainEvent
     {
-        public Guid CallId { get; set; }
-        public Guid CallerId { get; set; }
-        public Guid RecipientId { get; set; }
+        public int CallId { get; set; }
+        public int CallerId { get; set; }
+        public int RecipientId { get; set; }
         public DateTime DeclinedAt { get; set; }
 
         public CallDeclinedEvent()
@@ -89,8 +89,8 @@ namespace CondoManager.Entity.Events
 
     public class CallEndedEvent : DomainEvent
     {
-        public Guid CallId { get; set; }
-        public Guid CallerId { get; set; }
+        public int CallId { get; set; }
+        public int CallerId { get; set; }
         public DateTime EndedAt { get; set; }
         public TimeSpan Duration { get; set; }
 
@@ -102,9 +102,9 @@ namespace CondoManager.Entity.Events
 
     public class MessageSentEvent : DomainEvent
     {
-        public Guid MessageId { get; set; }
-        public Guid SenderId { get; set; }
-        public Guid? ApartmentId { get; set; }
+        public int MessageId { get; set; }
+        public int SenderId { get; set; }
+        public int? ApartmentId { get; set; }
         public string Content { get; set; } = string.Empty;
         public DateTime SentAt { get; set; }
 

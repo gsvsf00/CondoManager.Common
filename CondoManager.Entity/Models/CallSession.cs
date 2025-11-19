@@ -4,12 +4,12 @@ namespace CondoManager.Entity.Models
 {
     public class CallSession
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public Guid CallerId { get; set; }
+        public int CallerId { get; set; }
         public User Caller { get; set; } = null!;
 
-        public Guid? ApartmentId { get; set; }
+        public int? ApartmentId { get; set; }
         public Apartment? Apartment { get; set; }
 
         public ICollection<CallParticipant> Participants { get; set; } = new List<CallParticipant>();

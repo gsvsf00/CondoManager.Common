@@ -4,9 +4,9 @@ namespace CondoManager.Entity.DTOs
 {
     public class CallRequestDto
     {
-        public Guid CallerId { get; set; }
-        public Guid? ApartmentId { get; set; }
-        public Guid? TargetUserId { get; set; }
+        public int CallerId { get; set; }
+        public int? ApartmentId { get; set; }
+        public int? TargetUserId { get; set; }
         public string? Description { get; set; }
     }
 }

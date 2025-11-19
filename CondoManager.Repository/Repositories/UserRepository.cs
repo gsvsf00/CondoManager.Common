@@ -21,7 +21,7 @@ namespace CondoManager.Repository.Repositories
             return await _dbSet.FirstOrDefaultAsync(u => u.Phone == phone);
         }
 
-        public async Task<User?> GetWithApartmentsAsync(Guid id)
+        public async Task<User?> GetWithApartmentsAsync(int id)
         {
             return await _dbSet
                 .Include(u => u.Apartment)
@@ -29,7 +29,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<IEnumerable<User>> GetByApartmentIdAsync(Guid apartmentId)
+        public async Task<IEnumerable<User>> GetByApartmentIdAsync(int apartmentId)
         {
             return await _dbSet
                 .Where(u => u.Apartment != null && u.Apartment.ApartmentId == apartmentId)

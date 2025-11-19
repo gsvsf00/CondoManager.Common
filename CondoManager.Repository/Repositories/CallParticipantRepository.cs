@@ -10,7 +10,7 @@ namespace CondoManager.Repository.Repositories
         {
         }
 
-        public async Task<IEnumerable<CallParticipant>> GetByCallIdAsync(Guid callId)
+        public async Task<IEnumerable<CallParticipant>> GetByCallIdAsync(int callId)
         {
             return await _context.Set<CallParticipant>()
                 .Where(cp => cp.CallId == callId)
@@ -18,7 +18,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<CallParticipant?> GetParticipantAsync(Guid callId, Guid userId)
+        public async Task<CallParticipant?> GetParticipantAsync(int callId, int userId)
         {
             return await _context.Set<CallParticipant>()
                 .Include(cp => cp.User)
@@ -26,7 +26,7 @@ namespace CondoManager.Repository.Repositories
                 .FirstOrDefaultAsync(cp => cp.CallId == callId && cp.UserId == userId);
         }
 
-        public async Task<IEnumerable<CallParticipant>> GetActiveParticipantsAsync(Guid callId)
+        public async Task<IEnumerable<CallParticipant>> GetActiveParticipantsAsync(int callId)
         {
             return await _context.Set<CallParticipant>()
                 .Where(cp => cp.CallId == callId && cp.IsActive)
@@ -34,7 +34,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task UpdateParticipantStatusAsync(Guid callId, Guid userId, bool isActive)
+        public async Task UpdateParticipantStatusAsync(int callId, int userId, bool isActive)
         {
             var participant = await _context.Set<CallParticipant>()
                 .FirstOrDefaultAsync(cp => cp.CallId == callId && cp.UserId == userId);
@@ -49,7 +49,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task UpdateParticipantMediaAsync(Guid callId, Guid userId, bool isMuted, bool isVideoEnabled)
+        public async Task UpdateParticipantMediaAsync(int callId, int userId, bool isMuted, bool isVideoEnabled)
         {
             var participant = await _context.Set<CallParticipant>()
                 .FirstOrDefaultAsync(cp => cp.CallId == callId && cp.UserId == userId);
@@ -62,7 +62,7 @@ namespace CondoManager.Repository.Repositories
             }
         }
 
-        public async Task RemoveParticipantAsync(Guid callId, Guid userId)
+        public async Task RemoveParticipantAsync(int callId, int userId)
         {
             var participant = await _context.Set<CallParticipant>()
                 .FirstOrDefaultAsync(cp => cp.CallId == callId && cp.UserId == userId);

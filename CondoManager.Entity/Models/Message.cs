@@ -4,21 +4,21 @@ namespace CondoManager.Entity.Models
 {
     public class Message
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public Guid SenderId { get; set; }
+        public int SenderId { get; set; }
         public User Sender { get; set; } = null!;
 
         // New conversation-based approach
-        public Guid ConversationId { get; set; }
+        public int ConversationId { get; set; }
         public Conversation Conversation { get; set; } = null!;
 
         // For direct messages (optional - can be derived from conversation)
-        public Guid? RecipientId { get; set; }
+        public int? RecipientId { get; set; }
         public User? Recipient { get; set; }
 
         // Legacy support - can be removed later
-        public Guid? ApartmentId { get; set; }
+        public int? ApartmentId { get; set; }
         public Apartment? Apartment { get; set; }
 
         public ChatType ChatType { get; set; }
@@ -39,7 +39,7 @@ namespace CondoManager.Entity.Models
         public bool IsAnnouncement { get; set; } = false;
         
         // For reply functionality
-        public Guid? ReplyToMessageId { get; set; }
+        public int? ReplyToMessageId { get; set; }
         public Message? ReplyToMessage { get; set; }
     }
 }

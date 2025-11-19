@@ -29,7 +29,7 @@ namespace CondoManager.Repository.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Event>> GetEventsByCreatorAsync(Guid creatorId)
+        public async Task<IEnumerable<Event>> GetEventsByCreatorAsync(int creatorId)
         {
             return await _dbSet
                 .Where(e => e.CreatedById == creatorId)

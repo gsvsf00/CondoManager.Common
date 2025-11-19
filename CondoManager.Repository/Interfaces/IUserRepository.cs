@@ -6,8 +6,8 @@ namespace CondoManager.Repository.Interfaces
     {
         Task<User?> GetByEmailAsync(string email);
         Task<User?> GetByPhoneAsync(string email);
-        Task<User?> GetWithApartmentsAsync(Guid id);
-        Task<IEnumerable<User>> GetByApartmentIdAsync(Guid apartmentId);
+        Task<User?> GetWithApartmentsAsync(int id);
+        Task<IEnumerable<User>> GetByApartmentIdAsync(int apartmentId);
         Task<bool> EmailExistsAsync(string email);
         Task<bool> PhoneExistsAsync(string phone);
     }

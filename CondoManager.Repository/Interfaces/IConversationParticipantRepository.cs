@@ -4,12 +4,12 @@ namespace CondoManager.Repository.Interfaces
 {
     public interface IConversationParticipantRepository : IRepository<ConversationParticipant>
     {
-        Task<IEnumerable<ConversationParticipant>> GetByConversationIdAsync(Guid conversationId);
-        Task<IEnumerable<ConversationParticipant>> GetByUserIdAsync(Guid userId);
-        Task<ConversationParticipant?> GetParticipantAsync(Guid conversationId, Guid userId);
-        Task<bool> IsUserParticipantAsync(Guid conversationId, Guid userId);
-        Task UpdateLastReadAsync(Guid userId, Guid conversationId, DateTime lastReadAt);
-        Task RemoveParticipantAsync(Guid conversationId, Guid userId);
-        Task<IEnumerable<Guid>> GetActiveParticipantIdsAsync(Guid conversationId);
+        Task<IEnumerable<ConversationParticipant>> GetByConversationIdAsync(int conversationId);
+        Task<IEnumerable<ConversationParticipant>> GetByUserIdAsync(int userId);
+        Task<ConversationParticipant?> GetParticipantAsync(int conversationId, int userId);
+        Task<bool> IsUserParticipantAsync(int conversationId, int userId);
+        Task UpdateLastReadAsync(int userId, int conversationId, DateTime lastReadAt);
+        Task RemoveParticipantAsync(int conversationId, int userId);
+        Task<IEnumerable<int>> GetActiveParticipantIdsAsync(int conversationId);
     }
 }

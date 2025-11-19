@@ -2,7 +2,7 @@ namespace CondoManager.Entity.Models
 {
     public class Event
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; set; } = string.Empty;
 
@@ -12,7 +12,7 @@ namespace CondoManager.Entity.Models
 
         public DateTime EndDate { get; set; }
 
-        public Guid CreatedById { get; set; }
+        public int CreatedById { get; set; }
         public User CreatedBy { get; set; } = null!;
     }
 }
